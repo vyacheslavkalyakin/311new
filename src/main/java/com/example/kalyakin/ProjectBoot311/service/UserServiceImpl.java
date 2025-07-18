@@ -47,4 +47,15 @@ public class UserServiceImpl implements UserService {
     public User getUserById(int id) {
         return userDao.getUserById(id);
     }
+
+    @Override
+    public void editUser(int id, String username, String password, String email) {
+        User user = userDao.getUserById(id);
+        if (user != null) {
+            user.setUsername(username);
+            user.setPassword(password);
+            user.setEmail(email);
+            userDao.updateUser(user);
+        }
+    }
 }
